@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>weeWhiskyApp</title>
+    <link rel="stylesheet" href="/styles/stylesheet.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/vendors/xeditable.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/vendors/select.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" src="/vendors/angular.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/vendors/angular-route.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/vendors/select.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/vendors/xeditable.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/vendors/angular-sanitize.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/scripts/client.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/scripts/controllers/LoginController.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/scripts/controllers/AdminWhiskyController.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/scripts/controllers/SearchWhiskyController.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/scripts/controllers/TestController.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <!-- <header class="mainHeader">
+      <h1>Above, Bilo, a Header</h1>
+    </header> -->
+
+    <div ng-include="'views/partials/nav.html'"></div>
+    <main ng-view></main>
+
+    <footer class="mainFooter">
+      <h3>HIGHLANDS NYC, 150 WEST 10TH STREET, NEW YORK, NY, 10014, UNITED STATES(212) 229-2670EVENTS@HRG-NYC.COM
+    Highlands NYC 2015</h3>
+    </footer>
+  </body>
+
+</html>

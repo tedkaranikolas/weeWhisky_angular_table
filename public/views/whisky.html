@@ -1,0 +1,44 @@
+<body>
+<!-- <div ng-controller="SearchWhiskyController"> -->
+<div>
+    <input type="text" class="form-control" aria-describedby="sizing-addon1" maxlength ="15" ng-model="keywordIn" style="width:15%" value="" placeholder="Search by Keyword">
+      <select name="whiskyType" class="form-control" style="width:15%" ng-model="whiskyType">
+            <option disable selected value>WhiskyType</option>
+            <option value="Single Malt">Single Malt</option>
+            <option value="Single Grain">Single Grain</option>
+            <option value="Blended Malt">Blended Malt</option>
+            <option value="Blended Grain">Blended Grain</option>
+            <option value="Blended Scotch Whisky">Blended Scotch Whisky</option>
+      </select>
+      <select name="scotchRegion" class="form-control" style="width:15%" ng-model="scotchRegion">
+            <option disable selected value>Region</option>
+            <option value="Highlands">Highlands</option>
+            <option value="Speyside">Speyside</option>
+            <option value="Lowlands">Lowlands</option>
+            <option value="Islay">Islay</option>
+            <option value="Campbeltown">Campbeltown</option>
+            <option value="Independent Bottler">Independent</option>
+      </select>
+      <button type="button" ng-click="queryScotchDB()">Submit</button>
+              <table>
+                <tr>
+                  <th>Region</th>
+                  <th>Distillery</th>
+                  <th>Expression</th>
+                  <th>Palate</th>
+                  <th>ABV</th>
+                  <th>Cask Finish</th>
+                  <th>Type of Scotch</th>
+                </tr>
+                <tr ng-repeat="scotch in allTheScotch">
+                  <td>{{scotch.region}}</td>
+                  <td>{{scotch.distillery}}</td>
+                  <td>{{scotch.expression}}</td>
+                  <td>{{scotch.palate}}</td>
+                  <td>{{scotch.abv}}</td>
+                  <td>{{scotch.cask_finish}}</td>
+                  <td>{{scotch.whisky_type}}</td>
+                </tr>
+              </table>
+</div>
+</body>

@@ -1,0 +1,141 @@
+<body>
+<div ng-controller="AdminWhiskyController">
+  <form class="input-control">
+
+    <div class="input-group">
+      <input type="text" class="form-control" aria-describedby="sizing-addon3" ng-model="distilleryBottlerIn" maxlength ="15" value="" placeholder="Distillery/Bottler">
+
+
+      <input type="text" class="form-control" aria-describedby="sizing-addon3" ng-model="expressionIn" maxlength ="32" value="" placeholder="Expression">
+
+
+      <input ng-model="palateIn" class="form-control" aria-describedby="sizing-addon3" placeholder="Palate notes">
+
+
+      <input type="text" ng-model="abvIn" class="form-control" aria-describedby="sizing-addon3" maxlength ="3" value="" placeholder="ABV, number only">
+    </div>
+
+
+      <select name="caskFinishIn" class="form-control" style="width:15%" ng-model="caskFinishIn">
+          <option disable selected value>Cask Finish</option>
+          <option value="Bourbon">Bourbon</option>
+          <option value="Sherry">Sherry</option>
+          <option value="Port">Port</option>
+          <option value="Bourbon and Sherry">Bourbon and Sherry</option>
+          <option value="Bourbon and Oloroso">Bourbon and Oloroso</option>
+          <option value="Bourbon and Port">Bourbon and Port</option>
+          <option value="Bourbon and Sherry">Bourbon and Sherry</option>
+          <option value="Sauternes">Sauternes</option>
+          <option value="Oloroso and Pedro Ximenez">Oloroso and Pedro Ximenez</option>
+          <option value="Caribbean Rum">Caribbean Rum</option>
+          <option value="American Oak">American Oak</option>
+          <option value="Other">Other</option>
+      </select>
+
+      <select name="scotchRegion" class="form-control" style="width:15%" ng-model="scotchRegionIn">
+            <option disable selected value>Whisky Region</option>
+            <option value="Highlands">Highlands</option>
+            <option value="Speyside">Speyside</option>
+            <option value="Lowlands">Lowlands</option>
+            <option value="Islay">Islay</option>
+            <option value="Campbeltown">Campbeltown</option>
+            <option value="Islands">Islands</option>
+            <option value="Independent Bottler">Independent Bottler</option>
+            <option value="USA">USA</option>
+            <option value="Japan">Japan</option>
+            <option value="England">England</option>
+            <option value="Wales">Wales</option>
+            <option value="Belgium">Belgium</option>
+            <option value="France">France</option>
+            <option value="Australia">Australia</option>
+            <option value="Belgium">Belgium</option>
+            <option value="India">India</option>
+      </select>
+
+      <select name="whiskyType" class="form-control" style="width:15%" ng-model="whiskyTypeIn">
+            <option disable selected value>Whisky Type</option>
+            <option value="Single Malt">Single Malt</option>
+            <option value="Single Grain">Single Grain</option>
+            <option value="Blended Malt">Blended Malt</option>
+            <option value="Blended Grain">Blended Grain</option>
+            <option value="Blended Scotch Whisky">Blended Scotch Whisky</option>
+      </select>
+    </form>
+
+      <button type="button" class="btn btn-primary" ng-click="addScotchDB()">Submit</button>
+      <button type="button" class="btn btn-primary" ng-click="displayScotchDB()">Display All Scotches</button>
+
+      <table class="table table-bordered table-hover table-condensed">
+              <tr style="font-weight: bold">
+                  <th>ID</th>
+                  <th>Region</th>
+                  <th>Distillery or Producer</th>
+                  <th>Expression</th>
+                  <th>Palate</th>
+                  <th>ABV</th>
+                  <th>Cask Finish</th>
+                  <th>Type of Scotch</th>
+              </tr>
+                <tr ng-repeat="scotch in alladMinScotch">
+                    <td>
+                        {{scotch.id}}
+                  </td>
+                    <td>
+                      <span editable-text="scotch.region" e-name="region" e-form="rowform" e-required>
+                        {{scotch.region || 'empty'}}
+                      </span>
+                  </td>
+                    <td>
+                      <span editable-text="scotch.distillery" e-name="distillery" e-form="rowform" e-required>
+                        {{scotch.distillery || 'empty'}}
+                      </span>
+                    </td>
+                  <td>
+                      <span editable-text="scotch.expression" e-name="expression" e-form="rowform" e-required>
+                        {{scotch.expression || 'empty'}}
+                      </span>
+                    </td>
+                  <td>
+                      <span editable-text="scotch.palate" e-name="palate" e-form="rowform" e-required>
+                        {{scotch.palate || 'empty'}}
+                      </span>
+                    </td>
+                  <td>
+                      <span editable-text="scotch.abv" e-name="abv" e-form="rowform" e-required>
+                        {{scotch.abv || 'empty'}}
+                      </span>
+                    </td>
+                  <td>
+                      <span editable-text="scotch.cask_finish" e-name="cask_finish" e-form="rowform" e-required>
+                        {{scotch.cask_finish || 'empty'}}
+                      </span>
+                    </td>
+                  <td>
+                      <span editable-text="scotch.whisky_type" e-name="whisky_type" e-form="rowform" e-required>
+                        {{scotch.whisky_type || 'empty'}}
+                      </span>
+                    </td>
+                  <td style="white-space: nowrap">
+
+                  <form editable-form name="rowform" onbeforesave="saveScotch($data, scotch.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == scotch">
+                    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                        Save
+                    </button>
+                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                        Cancel
+                    </button>
+                  </form>
+
+                  <div class="buttons" ng-show="!rowform.$visible">
+                    <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                    <button class="btn btn-danger" ng-click="deleteScotchDB(scotch.id)">Delete</button>
+                  </div>
+
+                  </td>
+                </tr>
+              </table>
+              <button class="btn btn-default" ng-click="logout()">Log Out</button>
+              <div ng-include="'views/register.html'"></div>
+
+</div>
+</body>

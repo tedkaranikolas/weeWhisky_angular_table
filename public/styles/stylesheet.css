@@ -1,0 +1,10 @@
+#highlands{
+  width: 100%;
+  /*height: 550px;*/
+  background-size: cover;
+}
+.mainHeader{
+  color: #7d8085;
+  height: 60px;
+  padding: 0px
+}
